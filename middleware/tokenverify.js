@@ -6,12 +6,14 @@ function authenticateToken(req, res, next) {
 	const token = req.cookies.token;
     if (!token) return res.status(401).json({ message: "Token missing" });
     
-	jwt.verify(token, jwtSecret, (err, email) => {
-		if (err) return res.status(403).json({ message: "Invalid token" });
-		req.email = email;
-		console.log(email);
-		next();
-	});
+  	try {
+    	const decoded = jwt.verify(token, jwtSecret);
+    	req.email = decoded; // Attach decoded payload to request object
+    	next();
+  	} catch (error) {
+    	console.error("Token verification error:", error);
+    	return res.status(403).json({ message: "Unauthorized" });
+  	}
 }
 
 export default authenticateToken;
