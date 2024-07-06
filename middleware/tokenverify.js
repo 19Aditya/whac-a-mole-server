@@ -1,4 +1,5 @@
-const jwt = require("jsonwebtoken");
+import { verify } from "jsonwebtoken";
+require("dotenv").config();
 // const jwt_secret = process.env.jwt_secret
 const jwt_secret = "asdasd";
 
@@ -10,7 +11,7 @@ function authenticateToken(req, res, next) {
 	if (!token) return res.status(401).json({ message: "Token missing" });
 
 	// Verify token
-	jwt.verify(token, jwt_secret, (err, user) => {
+	verify(token, jwt_secret, (err, user) => {
 		if (err) return res.status(403).json({ message: "Invalid token" });
 
 		// Attach user to request object
@@ -21,4 +22,4 @@ function authenticateToken(req, res, next) {
 	});
 }
 
-module.exports = authenticateToken;
+export default authenticateToken;

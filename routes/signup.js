@@ -1,12 +1,12 @@
-const express = require("express");
-const router = express.Router();
-const { User } = require("../models/user");
+import { Router, urlencoded } from "express";
+import { User } from "../models/user.js";
 
+const router = Router();
 router.get("/", (req, res) => {
 	res.render("signup.ejs");
 });
 
-router.use(express.urlencoded({ extended: false }));
+router.use(urlencoded({ extended: false }));
 router.post("/", async (req, res) => {
 	const username = req.body.username;
 	const email = req.body.email;
@@ -16,4 +16,4 @@ router.post("/", async (req, res) => {
 	res.redirect("/login");
 });
 
-module.exports = router;
+export default router;
