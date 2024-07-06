@@ -8,7 +8,7 @@ function authenticateToken(req, res, next) {
     
   	try {
     	const decoded = jwt.verify(token, jwtSecret);
-    	req.email = decoded; // Attach decoded payload to request object
+    	req.email = decoded.email; // Attach decoded payload to request object
     	next();
   	} catch (error) {
     	console.error("Token verification error:", error);

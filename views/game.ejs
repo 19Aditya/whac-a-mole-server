@@ -76,7 +76,7 @@
       <h2>Score :</h2>
       <h2 id="score">0</h2>
       <h2 style="margin-left: 30px">Time :</h2>
-      <h2 id="time-left">30</h2>
+      <h2 id="time-left">15</h2>
     </div>
     <script>
      
@@ -88,7 +88,7 @@
 
       let result = 0
       let hitPosition
-      let currentTime = 25
+      let currentTime = 15
       let timerId = null
 
       let highScore = localStorage.getItem('highScore') || 0
@@ -123,7 +123,7 @@
       })
 
       function moveMole() {
-        timerId = setInterval(randomSquare, 620)
+        timerId = setInterval(randomSquare, 500)
       }
 
       moveMole()
@@ -135,11 +135,34 @@
         if (currentTime == 0) {
           clearInterval(countDownTimerId)
           clearInterval(timerId)
+          saveScore(); 
           alert('GAME OVER! Your final score is ' + result)
         }
       }
 
       let countDownTimerId = setInterval(countDown, 1000)
+
+      async function saveScore() {
+      const scoreData = { score: result };
+
+      try {
+        const response = await fetch('/save-score', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(scoreData)
+        });
+
+        if (response.ok) {
+          console.log('Score saved successfully');
+        } else {
+          console.error('Failed to save score');
+        }
+      } catch (error) {
+        console.error('Error saving score:', error);
+      }
+    }
     </script>
   </body>
 </html>

@@ -5,6 +5,7 @@ import express, { json } from "express";
 import gameroute from "./routes/game.js";
 import loginroute from "./routes/login.js";
 import signuproute from "./routes/signup.js";
+import savescoreroute from "./routes/save-score.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -23,5 +24,6 @@ app.use(cookieParser());
 app.use("/signup", signuproute);
 app.use("/login", loginroute);
 app.use("/game", gameroute);
+app.use("/save-score", savescoreroute);
 
 app.listen(PORT, () => {});
