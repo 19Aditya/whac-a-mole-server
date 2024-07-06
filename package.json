@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"dev": "nodemon server.js",
+		"dev": "node --env-file=.env --watch server.js",
 		"check": "biome check .",
 		"check:fix": "biome check --write .",
 		"check:unsafe": "biome check --write --unsafe ."
@@ -21,8 +21,6 @@
 		"mongoose": "^8.4.5"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.8.3",
-		"dotenv": "^16.4.5",
-		"nodemon": "^3.1.4"
+		"@biomejs/biome": "1.8.3"
 	}
 }

@@ -1,11 +1,9 @@
 import { Router, urlencoded } from "express";
-import { sign } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { User } from "../models/user.js";
 
-require("dotenv").config();
-
 const router = Router();
-const secret = process.env.token_secret;
+const jwt_secret = process.env.jwt_secret;
 
 router.get("/", (req, res) => {
 	res.render("login.ejs");
@@ -22,7 +20,7 @@ router.post("/", async (req, res) => {
 	});
 	if (user) {
 		const payload = { email: email };
-		const token = sign(payload, secret);
+		const token = jwt.sign(payload, jwt_secret);
 		res.json({ token });
 	} else {
 		res.status(411).json({ message: "Incorrect email and/or pass" });

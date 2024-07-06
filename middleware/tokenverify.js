@@ -1,7 +1,6 @@
-import { verify } from "jsonwebtoken";
-require("dotenv").config();
-// const jwt_secret = process.env.jwt_secret
-const jwt_secret = "asdasd";
+import jwt from "jsonwebtoken";
+const jwt_secret = process.env.jwt_secret;
+console.log(jwt_secret);
 
 function authenticateToken(req, res, next) {
 	// Get token from cookies
@@ -11,7 +10,7 @@ function authenticateToken(req, res, next) {
 	if (!token) return res.status(401).json({ message: "Token missing" });
 
 	// Verify token
-	verify(token, jwt_secret, (err, user) => {
+	jwt.verify(token, jwt_secret, (err, user) => {
 		if (err) return res.status(403).json({ message: "Invalid token" });
 
 		// Attach user to request object
