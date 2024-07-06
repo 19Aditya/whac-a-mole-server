@@ -6,9 +6,10 @@ function authenticateToken(req, res, next) {
 	const token = req.cookies.token;
     if (!token) return res.status(401).json({ message: "Token missing" });
     
-	jwt.verify(token, jwtSecret, (err, user) => {
+	jwt.verify(token, jwtSecret, (err, email) => {
 		if (err) return res.status(403).json({ message: "Invalid token" });
-		req.user = user;
+		req.email = email;
+		console.log(email);
 		next();
 	});
 }
