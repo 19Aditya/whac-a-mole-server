@@ -1,0 +1,50 @@
+body{
+	margin-top: 6.5%;
+	background-color: rgb(0, 103, 119);
+	font-family: Arial, Helvetica, sans-serif;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h2{
+	display: inline;
+	margin-top: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+	margin-bottom: 20px;
+	margin-top: 40px;
+}
+.square {
+	height: 100px;
+	width: 100px;
+	background-color: black;
+	border-radius: 50%;
+	cursor: pointer;
+	
+}
+.square:hover{
+	background-color: rgba(165, 42, 42, 0.673);
+}
+
+
+.mole {
+	background-image: url("../public/mole.jpg");
+	background-size: cover;
+	margin: 0 auto;
+}
+
+#highScoreDisplay {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.23em;
+    margin-bottom: 0px;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}

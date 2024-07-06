@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whac-a-mole    
+  </title>
+  <style>
+  body{
+    margin-top: 6.5%;
+    background-color: rgba(0, 16, 119, 0.868);
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  h2{
+    display: inline;
+    margin-top: 20px;
+  }
+  
+  .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+  }
+  .square {
+    height: 100px;
+    width: 100px;
+    background-color: black;
+    border-radius: 50%;
+    cursor: pointer;
+    
+  }
+  .square:hover{
+    background-color: rgba(165, 42, 42, 0.673);
+  }
+  
+  
+  .mole {
+    background-image: url("../public/mole.jpg");
+    background-size: cover;
+    margin: 0 auto;
+  }
+  
+  #highScoreDisplay {
+      display: block;
+      font-size: 1.5em;
+      margin-top: 0.23em;
+      margin-bottom: 0px;
+      margin-left: 0;
+      margin-right: 0;
+      font-weight: bold;
+  }
+  </style>
+</head>
+<body>
+  <h1 class="heading">Whac-A-Mole</h1>
+  <div id="highScoreDisplay">
+    High Score: <span id="high-score">0</span>
+  </div>
+  <div class="grid">
+    <div class="square" id="1"></div>
+    <div class="square" id="2"></div>
+    <div class="square" id="3"></div>
+    <div class="square" id="4"></div>
+    <div class="square" id="5"></div>
+    <div class="square" id="6"></div>
+    <div class="square" id="7"></div>
+    <div class="square" id="8"></div>
+    <div class="square" id="9"></div>
+  </div>
+  <div class="nn">
+    <h2>Score :</h2><h2 id="score">0</h2>
+    <h2 style="margin-left: 30px;">Time :</h2><h2 id="time-left"> 30</h2>
+  </div>
+  <script>
+    async function fetchGameData() {
+        const token = localStorage.getItem('token');
+        console.log(token)
+        if (!token) {
+            window.location.href = '/login';
+            return;
+        }
+
+        const response = await fetch('/game', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            const gameData = await response.json();
+            // Do something with the game data
+        } else {
+            alert('Failed to fetch game data');
+            window.location.href = '/login';
+        }
+    }
+
+    fetchGameData();
+    const squares = document.querySelectorAll(".square");
+const mole = document.querySelector(".mole");
+const timeLeft = document.querySelector("#time-left");
+const score = document.querySelector("#score");
+const highScoreDisplay = document.querySelector("#high-score");
+
+let result = 0;
+let hitPosition;
+let currentTime = 25;
+let timerId = null;
+
+let highScore = localStorage.getItem("highScore") || 0;
+highScoreDisplay.textContent = highScore;
+
+function randomSquare() {
+  squares.forEach((square) => {
+    square.classList.remove("mole");
+  });
+
+  let randomSquare = squares[Math.floor(Math.random() * 9)];
+  randomSquare.classList.add("mole");
+
+  hitPosition = randomSquare.id;
+}
+
+squares.forEach((square) => {
+  square.addEventListener("mousedown", () => {
+    if (square.id == hitPosition) {
+      result++;
+      score.textContent = result;
+      hitPosition = null;
+
+      if (result > highScore) {
+        highScore = result;
+        // Save high score to local storage
+        localStorage.setItem("highScore", highScore);
+        highScoreDisplay.textContent = highScore;
+      }
+    }
+  });
+});
+
+function moveMole() {
+  timerId = setInterval(randomSquare, 620);
+}
+
+moveMole();
+
+function countDown() {
+  currentTime--;
+  timeLeft.textContent = currentTime;
+
+  if (currentTime == 0) {
+    clearInterval(countDownTimerId);
+    clearInterval(timerId);
+    alert("GAME OVER! Your final score is " + result);
+  }
+}
+
+let countDownTimerId = setInterval(countDown, 1000);
+
+ </script>
+  
+</body>
+</html>
