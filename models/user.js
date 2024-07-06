@@ -1,5 +1,5 @@
 import { Schema, connect, model } from "mongoose";
-connect(process.env.MOONGOSE_KEY);
+connect(process.env.MONGOOSE_KEY);
 
 const UserSchema = new Schema({
 	username: { type: String, required: true },
