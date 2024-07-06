@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-const jwtSecret = process.env.jwt_secret;
+const jwtSecret = process.env.SECRET_KEY;
 
 function authenticateToken(req, res, next) {
 	// Get token from cookies
