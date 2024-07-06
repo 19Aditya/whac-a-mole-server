@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 3000;
 
 app.set("views", "./views");
 app.set("view engine", "ejs");
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 app.use(express.json());
 app.use(cookieParser());
 
@@ -17,6 +17,5 @@ app.use("/login", loginroute);
 app.use("/game", gameroute);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+	console.log(`Server is running on port ${PORT}`);
 });
-
