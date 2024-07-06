@@ -79,30 +79,30 @@
       <h2 id="time-left">30</h2>
     </div>
     <script>
-      async function fetchGameData() {
-        const token = localStorage.getItem('token')
-        console.log(token)
-        if (!token) {
-          window.location.href = '/login'
-          return
-        }
+      // async function fetchGameData() {
+      //   const token = localStorage.getItem('token')
+      //   console.log(token)
+      //   if (!token) {
+      //     window.location.href = '/login'
+      //     return
+      //   }
 
-        const response = await fetch('/game', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+      //   const response = await fetch('/game', {
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //   })
 
-        if (response.ok) {
-          const gameData = await response.json()
-          // Do something with the game data
-        } else {
-          alert('Failed to fetch game data')
-          window.location.href = '/login'
-        }
-      }
+      //   if (response.ok) {
+      //     const gameData = await response.json()
+      //     // Do something with the game data
+      //   } else {
+      //     alert('Failed to fetch game data')
+      //     window.location.href = '/login'
+      //   }
+      // }
 
-      fetchGameData()
+      // fetchGameData()
       const squares = document.querySelectorAll('.square')
       const mole = document.querySelector('.mole')
       const timeLeft = document.querySelector('#time-left')
