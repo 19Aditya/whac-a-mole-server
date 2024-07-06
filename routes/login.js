@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { User } from "../models/user.js";
 
 const router = Router();
-const jwtSecret = process.env.SECRET_KEY
+const jwtSecret = process.env.SECRET_KEY;
 
 router.get("/", (_req, res) => {
 	res.render("login.ejs");

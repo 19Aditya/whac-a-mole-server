@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
+		"start": "node --env-file=.env server.js",
 		"dev": "node --env-file=.env --watch server.js",
 		"check": "biome check .",
 		"format:fix": "biome check --write .",

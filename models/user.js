@@ -1,7 +1,5 @@
 import { Schema, connect, model } from "mongoose";
-connect(
-	"mongodb+srv://awesomeaditya0:wproject@cluster0.k845zjg.mongodb.net/whac-a-mole",
-);
+connect(process.env.MOONGOSE_KEY);
 
 const UserSchema = new Schema({
 	username: { type: String, required: true },
