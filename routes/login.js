@@ -3,9 +3,9 @@ import jwt from "jsonwebtoken";
 import { User } from "../models/user.js";
 
 const router = Router();
-const jwt_secret = process.env.jwt_secret;
+const jwtSecret = process.env.jwt_secret;
 
-router.get("/", (req, res) => {
+router.get("/", (_req, res) => {
 	res.render("login.ejs");
 });
 
@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
 	});
 	if (user) {
 		const payload = { email: email };
-		const token = jwt.sign(payload, jwt_secret);
+		const token = jwt.sign(payload, jwtSecret);
 		res.json({ token });
 	} else {
 		res.status(411).json({ message: "Incorrect email and/or pass" });

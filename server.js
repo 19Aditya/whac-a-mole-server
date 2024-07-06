@@ -16,6 +16,4 @@ app.use("/signup", signuproute);
 app.use("/login", loginroute);
 app.use("/game", gameroute);
 
-app.listen(PORT, () => {
-	console.log(`Server is running on port ${PORT}`);
-});
+app.listen(PORT, () => {});

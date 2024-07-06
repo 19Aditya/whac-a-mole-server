@@ -1,0 +1,14 @@
+{
+	"recommendations": [
+		"biomejs.biome",
+		"bradlc.vscode-tailwindcss",
+		"dsznajder.es7-react-js-snippets",
+		"mattpocock.ts-error-translator",
+		"million.million-lint",
+		"orta.vscode-twoslash-queries",
+		"rangav.vscode-thunder-client",
+		"usernamehw.errorlens",
+		"WallabyJs.console-ninja",
+		"yoavbls.pretty-ts-errors"
+	]
+}

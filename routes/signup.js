@@ -2,7 +2,7 @@ import { Router, urlencoded } from "express";
 import { User } from "../models/user.js";
 
 const router = Router();
-router.get("/", (req, res) => {
+router.get("/", (_req, res) => {
 	res.render("signup.ejs");
 });
 
