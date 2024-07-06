@@ -41,7 +41,6 @@
               .then((response) => response.json())
               .then((data) => {
                 if (data.token) {
-                  localStorage.setItem('token', data.token) // Save token to localStorage
                   document.cookie = `token=${data.token}`
                   window.location.href = '/game' // Redirect to '/game' route
                 } else {
