@@ -5,7 +5,7 @@ import loginroute from "./routes/login.js";
 import signuproute from "./routes/signup.js";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT ?? 3000;
 
 app.set("views", "./views");
 app.set("view engine", "ejs");
